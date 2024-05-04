@@ -2,12 +2,17 @@ const container=document.querySelector(".container");
 const globalHeight=400,globalWidth=400;
 let gridRows=16,gridColumns=16;
 
+let eraserState=false;
+
+const eraser=document.querySelector(".eraser");
+eraser.addEventListener("click", updateEraser);
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
 
 const form=document.querySelector("#gridSize");
+
 form.addEventListener("submit", (e)=>{e.preventDefault();
     const gridRowsInput = document.querySelector("#gridRows");
     const gridColumnsInput = document.querySelector("#gridColumns");
@@ -25,6 +30,19 @@ form.addEventListener("submit", (e)=>{e.preventDefault();
         createGrid(16, 16);
     }
     });
+
+function updateEraser()
+{
+    eraserState = !eraserState;
+    if(eraserState)
+    {
+        eraser.style.backgroundColor = "#f7bc46";
+    }
+    else if(!eraserState)
+    {
+        eraser.style.backgroundColor = "#ffedca";
+    }
+}
 
 function createGrid(gridRows,gridColumns)
 {
@@ -48,7 +66,14 @@ function createGrid(gridRows,gridColumns)
 function changeColor(e)
 {
     if(e.type==='mouseover' && !mouseDown) return;
-    e.target.style.backgroundColor = "#333333";
+    if(!eraserState)
+    {
+        e.target.style.backgroundColor = "#333333";
+    }
+    else if(eraserState)
+    {
+        e.target.style.backgroundColor = "";
+    }
 }
 
 createGrid(gridRows,gridColumns);

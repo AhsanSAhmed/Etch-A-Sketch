@@ -16,7 +16,6 @@ body{
 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-right: 20vw;
 }
 
@@ -53,4 +52,19 @@ form {
     width: 400px;
     background-color: white;
     border: black solid 3px;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.eraser{
+    height: 60px;
+    width: 150px;
+    border-radius: 10px;
+    font-size: large;
+    font-weight: bold;
+    background-color: #ffedca;
 }
